@@ -1,0 +1,6 @@
+.venv
+.env
+.theia
+/venv
+/env
+/theia
