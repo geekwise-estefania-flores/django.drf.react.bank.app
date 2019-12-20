@@ -1,6 +1,8 @@
 .venv
 .env
 .theia
+.vscode
 /venv
 /env
 /theia
+/vscode
