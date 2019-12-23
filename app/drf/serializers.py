@@ -10,3 +10,23 @@ class user_serializer( serializers.HyperlinkedModelSerializer ):
             'email',
             'groups',
         ]
+
+class Branch_Serializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        fields = ['id', 'name']
+        model = Branch
+
+class Account_Serializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        fields = ['id','name']
+        model = Account
+
+class Customer_Serializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        fields = ['id','name']
+        model = Customer
+
+class Product_Serializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        fields = ['id', 'name']
+        model = Product
