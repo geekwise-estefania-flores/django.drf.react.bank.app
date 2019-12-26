@@ -3,11 +3,11 @@ from django.db import models
 
 
 class Branch(models.Model):
-        name = models.CharField(max_length=100)
-        address = models.CharField(max_length=200, default='123 Fake Street, 93291')
+    name = models.CharField(max_length=100)
+    address = models.CharField(max_length=200, default='123 Fake Street, 93291')
 
-        def __str__(self):
-            return f"{self.name}: {self.address}"
+    def __str__(self):
+        return f"{self.name}: {self.address}"
 
 class Customer(models.Model):
     name = models.CharField(max_length=100)

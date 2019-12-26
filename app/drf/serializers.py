@@ -2,7 +2,7 @@ from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from .models import Branch, Account, Customer
 
-class user_serializer( serializers.HyperlinkedModelSerializer ):
+class User_Serializer( serializers.HyperlinkedModelSerializer ):
     class Meta:
         model = User
         fields = [
@@ -14,8 +14,11 @@ class user_serializer( serializers.HyperlinkedModelSerializer ):
 
 class Branch_Serializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        fields = ['id', 'name']
         model = Branch
+        fields = [
+            'id', 
+            'name'
+        ]
 
 class Account_Serializer(serializers.HyperlinkedModelSerializer):
     class Meta:
