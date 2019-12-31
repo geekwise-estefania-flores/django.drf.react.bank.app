@@ -20,7 +20,7 @@ class App extends Component {
   }
   refreshList = () => {
     axios
-      .get("http://localhost:8000/api/todos/")
+      .get("http://127.0.0.1:8000/api/branches/")
       .then(res => this.setState({ todoList: res.data.results }))
       .catch(err => console.log(err));
   };
@@ -50,9 +50,8 @@ class App extends Component {
   };
   renderItems = () => {
     const { viewCompleted } = this.state;
-    const newItems = this.state.todoList.filter(
-      item => item.completed === viewCompleted
-    );
+    const newItems = this.state.todoList
+    console.log(newItems)
     return newItems.map(item => (
       <li
         key={item.id}
@@ -64,7 +63,7 @@ class App extends Component {
           }`}
           title={item.description}
         >
-          {item.title}
+          {item.name}
         </span>
         <span>
           <button
@@ -101,7 +100,7 @@ class App extends Component {
   };
   handleDelete = item => {
     axios
-      .delete(`http://localhost:8000/api/todos/${item.id}/`)
+      .delete(`http://localhost:8000/api/todos/${item.id}`)
       .then(res => this.refreshList());
   };
   createItem = () => {

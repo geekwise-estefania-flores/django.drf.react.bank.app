@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -115,6 +116,4 @@ REST_FRAMEWORK = {
 
 django_heroku.settings(locals())
 
-CORS_ORIGIN_WHITELIST = (
-         'localhost:3000/'
-     )
+CORS_ORIGIN_ALLOW_ALL=True
