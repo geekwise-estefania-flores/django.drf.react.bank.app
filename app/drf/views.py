@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from drf.serializers import User_Serializer, Branch_Serializer, Account_Serializer, Customer_Serializer
-from .models import Account, Branch, Customer
+from drf.models import Account, Branch, Customer
+
+
 
 class user_viewset(viewsets.ModelViewSet):
     """ note:

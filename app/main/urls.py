@@ -13,6 +13,7 @@ router.register(r'customers', drf_views.Customer_Viewset, 'customers')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('auth', include('rest_framework.urls', namespace='rest_framework')),
+    path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
 ]

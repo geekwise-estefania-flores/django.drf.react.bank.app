@@ -17,7 +17,8 @@ class Branch_Serializer(serializers.HyperlinkedModelSerializer):
         model = Branch
         fields = [
             'id', 
-            'name'
+            'name',
+            'address'
         ]
 
 class Account_Serializer(serializers.HyperlinkedModelSerializer):

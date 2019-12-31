@@ -8,9 +8,9 @@ class App extends Component {
     this.state = {
       viewCompleted: false,
       activeItem: {
-        title: "",
-        description: "",
-        completed: false
+        name: "",
+        address: "",
+        // completed: false
       },
       todoList: []
     };
@@ -49,7 +49,7 @@ class App extends Component {
     );
   };
   renderItems = () => {
-    const { viewCompleted } = this.state;
+    // const { viewCompleted } = this.state;
     const newItems = this.state.todoList
     console.log(newItems)
     return newItems.map(item => (
@@ -61,7 +61,7 @@ class App extends Component {
           className={`todo-title mr-2 ${
             this.state.viewCompleted ? "completed-todo" : ""
           }`}
-          title={item.description}
+          title={item.name}
         >
           {item.name}
         </span>
@@ -90,21 +90,21 @@ class App extends Component {
     this.toggle();
     if (item.id) {
       axios
-        .put(`http://localhost:8000/api/branches/${item.id}/`, item)
+        .put(`http://127.0.0.1:8000/api/branches/${item.id}/`, item)
         .then(res => this.refreshList());
       return;
     }
     axios
-      .post("http://localhost:8000/api/branches/", item)
+      .post("http://127.0.0.1:8000/api/branches/", item)
       .then(res => this.refreshList());
   };
   handleDelete = item => {
     axios
-      .delete(`http://localhost:8000/api/branches/${item.id}`)
+      .delete(`http://127.0.0.1:8000/api/branches/${item.id}`)
       .then(res => this.refreshList());
   };
   createItem = () => {
-    const item = { title: "", description: "", completed: false };
+    const item = { name: "", address: ""};
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
   editItem = item => {

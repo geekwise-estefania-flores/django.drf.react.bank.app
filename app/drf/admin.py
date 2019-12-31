@@ -1,8 +1,8 @@
 from django.contrib import admin
 from .models import Account, Branch, Customer
 
-class TodoAdmin(admin.ModelAdmin):  # add this
-    list_display = ('title', 'description', 'completed') # add this
+class TodoAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description', 'completed') 
 
 admin.site.register(Account)
 admin.site.register(Branch)
