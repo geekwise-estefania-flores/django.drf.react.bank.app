@@ -37,13 +37,25 @@ class App extends Component {
           onClick={() => this.displayCompleted(true)}
           className={this.state.viewCompleted ? "active" : ""}
         >
-          complete
+          Accounts
         </span>
         <span
           onClick={() => this.displayCompleted(false)}
           className={this.state.viewCompleted ? "" : "active"}
         >
-          Incomplete
+          Branches
+        </span>
+        <span
+          onClick={() => this.displayCompleted(true)}
+          className={this.state.viewCompleted ? "active" : ""}
+        >
+          Customers
+        </span>
+        <span
+          onClick={() => this.displayCompleted(true)}
+          className={this.state.viewCompleted ? "active" : ""}
+        >
+          Products
         </span>
       </div>
     );
