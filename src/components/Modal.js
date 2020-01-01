@@ -15,17 +15,17 @@ export default class CustomModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeItem: this.props.activeItem
+      branchItem: this.props.branchItem
     };
   }
-  handleChange = e => {
-    let { name, value } = e.target;
-    if (e.target.type === "checkbox") {
-      value = e.target.checked;
-    }
-    const activeItem = { ...this.state.activeItem, [name]: value };
-    this.setState({ activeItem });
-  };
+  // handleChange = e => {
+  //   let { name, value } = e.target;
+  //   if (e.target.type === "checkbox") {
+  //     value = e.target.checked;
+  //   }
+  //   const activeItem = { ...this.state.activeItem, [name]: value };
+  //   this.setState({ activeItem });
+  // };
   render() {
     const { toggle, onSave } = this.props;
     return (
@@ -38,7 +38,7 @@ export default class CustomModal extends Component {
               <Input
                 type="text"
                 name="name"
-                value={this.state.activeItem.name}
+                value={this.state.branchItem.name}
                 onChange={this.handleChange}
                 placeholder="Enter Branch Name"
               />
@@ -48,7 +48,7 @@ export default class CustomModal extends Component {
               <Input
                 type="text"
                 name="address"
-                value={this.state.activeItem.address}
+                value={this.state.branchItem.address}
                 onChange={this.handleChange}
                 placeholder="123 Fake Street 93291"
               />
@@ -67,7 +67,7 @@ export default class CustomModal extends Component {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="success" onClick={() => onSave(this.state.activeItem)}>
+          <Button color="success" onClick={() => onSave(this.state.branchItem)}>
             Save
           </Button>
         </ModalFooter>

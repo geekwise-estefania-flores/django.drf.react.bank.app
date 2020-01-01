@@ -7,12 +7,12 @@ class App extends Component {
     super(props);
     this.state = {
       viewCompleted: false,
-      activeItem: {
+      branchItem: {
         name: "",
         address: "",
         // completed: false
       },
-      todoList: []
+      branchList: []
     };
   }
   componentDidMount() {
@@ -21,7 +21,7 @@ class App extends Component {
   refreshList = () => {
     axios
       .get("https://django-drf-react-bank-project.herokuapp.com/api/branches/")
-      .then(res => this.setState({ todoList: res.data.results }))
+      .then(res => this.setState({ branchList: res.data.results }))
       .catch(err => console.log(err));
   };
   displayCompleted = status => {
@@ -34,7 +34,7 @@ class App extends Component {
     return (
       <div className="my-5 tab-list">
         <span
-          onClick={() => this.displayCompleted(true)}
+          onClick={() => this.displayCompleted(false)}
           className={this.state.viewCompleted ? "active" : ""}
         >
           Accounts
@@ -46,13 +46,13 @@ class App extends Component {
           Branches
         </span>
         <span
-          onClick={() => this.displayCompleted(true)}
+          onClick={() => this.displayCompleted(false)}
           className={this.state.viewCompleted ? "active" : ""}
         >
           Customers
         </span>
         <span
-          onClick={() => this.displayCompleted(true)}
+          onClick={() => this.displayCompleted(false)}
           className={this.state.viewCompleted ? "active" : ""}
         >
           Products
@@ -62,7 +62,7 @@ class App extends Component {
   };
   renderItems = () => {
     // const { viewCompleted } = this.state;
-    const newItems = this.state.todoList
+    const newItems = this.state.branchList
     console.log(newItems)
     return newItems.map(item => (
       <li
