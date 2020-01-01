@@ -30,7 +30,7 @@ export default class CustomModal extends Component {
     const { toggle, onSave } = this.props;
     return (
       <Modal isOpen={true} toggle={toggle}>
-        <ModalHeader toggle={toggle}> Todo Item </ModalHeader>
+        <ModalHeader toggle={toggle}> Branch </ModalHeader>
         <ModalBody>
           <Form>
             <FormGroup>
@@ -50,7 +50,7 @@ export default class CustomModal extends Component {
                 name="address"
                 value={this.state.activeItem.address}
                 onChange={this.handleChange}
-                placeholder="Enter Branch Address"
+                placeholder="123 Fake Street 93291"
               />
             </FormGroup>
             {/* <FormGroup check>

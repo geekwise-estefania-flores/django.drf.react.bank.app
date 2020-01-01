@@ -104,7 +104,7 @@ class App extends Component {
       .then(res => this.refreshList());
   };
   createItem = () => {
-    const item = { name: "", address: ""};
+    const item = { name: "", address: "123 Fake Street 93291"};
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
   editItem = item => {
@@ -113,7 +113,7 @@ class App extends Component {
   render() {
     return (
       <main className="content">
-        <h1 className="text-white text-uppercase text-center my-4">Todo app</h1>
+        <h1 className="text-white text-uppercase text-center my-4">Bank of Stef</h1>
         <div className="row ">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
             <div className="card p-3">
