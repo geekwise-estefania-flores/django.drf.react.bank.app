@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import ModalBranch from "./components/branchModal";
+import ModalCustomer from "./components/customerModal";
+import ModalAccount from "./components/accountModal";
+
 import axios from "axios";
 
 class App extends Component {
@@ -314,6 +317,20 @@ class App extends Component {
         {this.state.modal ? (
           <ModalBranch
             activeItem={this.state.branchItem}
+            toggle={this.toggle}
+            onSave={this.handleSubmit}
+          />
+        ) : null}
+        {this.state.modal ? (
+           <ModalAccount
+            activeItem={this.state.accountItem}
+            toggle={this.toggle}
+            onSave={this.handleSubmit}
+          />
+        ) : null}
+        {this.state.modal ? (
+          <ModalCustomer
+            activeItem={this.state.customerItem}
             toggle={this.toggle}
             onSave={this.handleSubmit}
           />
