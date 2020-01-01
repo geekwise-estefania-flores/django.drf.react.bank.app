@@ -1,20 +1,28 @@
 import React, { Component } from "react";
-import Modal from "./components/Modal";
+import Modal from "./components/branchModal";
+import Modal from "./components/accountModal";
 import axios from "axios";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      viewCompleted: false,
+      // viewCompleted: false,
       branchItem: {
         name: "",
         address: "",
         // completed: false
       },
-      branchList: []
-    };
+      branchList: [],
+
+      accountItem: {
+      name: "",
+      balance: "",
+      holder: "",
+    },
+    accountList: [],
   }
+};
   componentDidMount() {
     this.refreshList();
   }
@@ -117,10 +125,10 @@ class App extends Component {
   };
   createItem = () => {
     const item = { name: "", address: "123 Fake Street 93291"};
-    this.setState({ activeItem: item, modal: !this.state.modal });
+    this.setState({ branchItem: item, modal: !this.state.modal });
   };
   editItem = item => {
-    this.setState({ activeItem: item, modal: !this.state.modal });
+    this.setState({ branchItem: item, modal: !this.state.modal });
   };
   render() {
     return (
@@ -143,7 +151,7 @@ class App extends Component {
         </div>
         {this.state.modal ? (
           <Modal
-            activeItem={this.state.activeItem}
+            branchItem={this.state.branchItem}
             toggle={this.toggle}
             onSave={this.handleSubmit}
           />
