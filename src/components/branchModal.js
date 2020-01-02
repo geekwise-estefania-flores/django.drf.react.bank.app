@@ -37,7 +37,7 @@ export default class CustomModal extends Component {
               <Label for="name">Branch Name</Label>
               <Input
                 type="text"
-                // name="name"
+                name="name"
                 value={this.state.branchItem.name}
                 onChange={this.handleChange}
                 placeholder="Enter Branch Name"

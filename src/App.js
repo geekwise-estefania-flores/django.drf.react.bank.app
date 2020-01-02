@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ModalBranch from "./components/branchModal";
-import ModalCustomer from "./components/customerModal";
-import ModalAccount from "./components/accountModal";
+// import ModalCustomer from "./components/customerModal";
+// import ModalAccount from "./components/accountModal";
 
 import axios from "axios";
 
@@ -321,7 +321,7 @@ class App extends Component {
             onSave={this.handleSubmit}
           />
         ) : null}
-        {this.state.modal ? (
+        {/* {this.state.modal ? (
            <ModalAccount
             activeItem={this.state.accountItem}
             toggle={this.toggle}
@@ -334,7 +334,7 @@ class App extends Component {
             toggle={this.toggle}
             onSave={this.handleSubmit}
           />
-        ) : null}
+        ) : null} */}
       </main>
     );
   }
