@@ -316,7 +316,7 @@ class App extends Component {
         </div>
         {this.state.modal ? (
           <ModalBranch
-            activeItem={this.state.branchItem}
+            branchItem={this.state.branchItem}
             toggle={this.toggle}
             onSave={this.handleSubmit}
           />

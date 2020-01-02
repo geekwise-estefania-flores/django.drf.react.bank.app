@@ -13,11 +13,9 @@
     "react-scripts": "^3.2.0",
     "reactstrap": "^8.2.0"
   },
-
-  "engines" : { 
-    "node" : "13.5.0"
+  "engines": {
+    "node": "13.5.0"
   },
-
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

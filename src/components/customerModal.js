@@ -30,7 +30,7 @@ export default class CustomModal extends Component {
               <Input
                 type="text"
                 // name="name"
-                value={this.state.customerItem.name}
+                value={this.state.accountItem.name}
                 onChange={this.handleChange}
                 placeholder="Enter Customer Name"
               />
@@ -40,7 +40,7 @@ export default class CustomModal extends Component {
               <Input
                 type="text"
                 // name="name"
-                value={this.state.branchItem.balance}
+                value={this.state.accountItem.balance}
                 onChange={this.handleChange}
                 placeholder="branch name"
               />

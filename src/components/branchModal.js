@@ -18,16 +18,20 @@ export default class CustomModal extends Component {
       branchItem: this.props.branchItem
     };
   }
-  // handleChange = e => {
-  //   let { name, value } = e.target;
-  //   if (e.target.type === "checkbox") {
-  //     value = e.target.checked;
-  //   }
-  //   const activeItem = { ...this.state.activeItem, [name]: value };
-  //   this.setState({ activeItem });
-  // };
+  
+  handleChange = e => {
+    let { name, value } = e.target;
+    if (e.target.name === "name") {
+      // this.setState({branchItem: e.target.value})
+      value = e.target.value;
+    }
+    const branchItem = { ...this.state.branchItem, [name]: value };
+    this.setState({ branchItem });
+  };
+
   render() {
     const { toggle, onSave } = this.props;
+    console.log("Branch: " + this.state.branchItem)
     return (
       <Modal isOpen={true} toggle={toggle}>
         <ModalHeader toggle={toggle}> Branch </ModalHeader>
