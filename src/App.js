@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ModalBranch from "./components/branchModal";
-// import ModalCustomer from "./components/customerModal";
+import ModalCustomer from "./components/customerModal";
 // import ModalAccount from "./components/accountModal";
 
 import axios from "axios";
@@ -52,10 +52,7 @@ class App extends Component {
       .get("https://django-drf-react-bank-project.herokuapp.com/api/customers/")
       .then(res => this.setState({ customerList: res.data.results }))
       .catch(err => console.log(err));
-    // axios
-    //   .get("https://backend-bank-yuki.herokuapp.com/bank/products/")
-    //   .then(res => this.setState({ productList: res.data.results }))
-    //   .catch(err => console.log(err));
+
     axios
       .get("https://django-drf-react-bank-project.herokuapp.com/api/accounts/")
       .then(res => this.setState({ accountList: res.data.results }))
@@ -321,13 +318,13 @@ class App extends Component {
             onSave={this.handleSubmit}
           />
         ) : null}
-        {/* {this.state.modal ? (
+        {/* {/* {this.state.modal ? (
            <ModalAccount
             activeItem={this.state.accountItem}
             toggle={this.toggle}
             onSave={this.handleSubmit}
           />
-        ) : null}
+        ) : null} */}
         {this.state.modal ? (
           <ModalCustomer
             activeItem={this.state.customerItem}

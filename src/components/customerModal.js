@@ -15,36 +15,59 @@ export default class CustomModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      accountItem: this.props.accountItem
+      customerItem: this.props.customerItem
     };
   }
+  
+  handleChange = e => {
+    let { name, value } = e.target;
+    if (e.target.name === "name") {
+      this.setState({customerItem: e.target.value})
+      value = e.target.value;
+    }
+    const customerItem = { ...this.state.customerItem, [name]: value };
+    this.setState({ customerItem });
+  };
+
   render() {
     const { toggle, onSave } = this.props;
+    console.log("Customer: " + this.state.customerItem)
     return (
       <Modal isOpen={true} toggle={toggle}>
         <ModalHeader toggle={toggle}> Customer </ModalHeader>
         <ModalBody>
           <Form>
             <FormGroup>
-              <Label for="name">Customer Name</Label>
+              <Label for="name">Name</Label>
               <Input
                 type="text"
-                // name="name"
-                value={this.state.accountItem.name}
+                name="name"
+                value={this.state.customerItem.name}
                 onChange={this.handleChange}
                 placeholder="Enter Customer Name"
               />
             </FormGroup>
-            <FormGroup>
-              <Label for="branch">Branch</Label>
+            {/* <FormGroup>
+              <Label for="address">Address</Label>
               <Input
                 type="text"
-                // name="name"
-                value={this.state.accountItem.balance}
+                name="address"
+                value={this.state.branchItem.address}
                 onChange={this.handleChange}
-                placeholder="branch name"
+                placeholder="123 Fake Street 93291"
               />
-            </FormGroup>
+            </FormGroup> */}
+            {/* <FormGroup check>
+              <Label for="completed">
+                <Input
+                  type="checkbox"
+                  name="completed"
+                  checked={this.state.activeItem.completed}
+                  onChange={this.handleChange}
+                />
+                Completed
+              </Label>
+            </FormGroup> */}
           </Form>
         </ModalBody>
         <ModalFooter>
