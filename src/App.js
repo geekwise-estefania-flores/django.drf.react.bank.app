@@ -290,7 +290,7 @@ class App extends Component {
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
   editItem = item => {
-    this.setState({ activeItem: item, modal: !this.state.modal });
+    this.setState({ branchItem: item, modal: !this.state.modal });
   };
   render() {
     return (
