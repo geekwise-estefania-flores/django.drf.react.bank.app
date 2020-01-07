@@ -15,11 +15,11 @@ class App extends Component {
       },
       branchList: [],
 
-      customerItem: {
-        name: "",
-        branch: "",
-      },
-      customerList: [],
+      // customerItem: {
+      //   name: "",
+      //   branch: "",
+      // },
+      // customerList: [],
 
       // productItem: {
       //   product_options: "",
@@ -48,15 +48,15 @@ class App extends Component {
       .get("https://django-drf-react-bank-project.herokuapp.com/api/branches/")
       .then(res => this.setState({ branchList: res.data.results }))
       .catch(err => console.log(err));
-    axios
-      .get("https://django-drf-react-bank-project.herokuapp.com/api/customers/")
-      .then(res => this.setState({ customerList: res.data.results }))
-      .catch(err => console.log(err));
+    // axios
+    //   .get("https://django-drf-react-bank-project.herokuapp.com/api/customers/")
+    //   .then(res => this.setState({ customerList: res.data.results }))
+    //   .catch(err => console.log(err));
 
-    axios
-      .get("https://django-drf-react-bank-project.herokuapp.com/api/accounts/")
-      .then(res => this.setState({ accountList: res.data.results }))
-      .catch(err => console.log(err));
+    // axios
+    //   .get("https://django-drf-react-bank-project.herokuapp.com/api/accounts/")
+    //   .then(res => this.setState({ accountList: res.data.results }))
+    //   .catch(err => console.log(err));
   };
 
   displayBranch = status => {
@@ -270,6 +270,7 @@ class App extends Component {
   };
   handleSubmit = item => {
     this.toggle();
+    console.log("Item: " + item.name)
     if (item.id) {
       axios
         .put(`https://django-drf-react-bank-project.herokuapp.com/api/branches/${item.id}/`, item)
@@ -287,10 +288,10 @@ class App extends Component {
   };
   createItem = () => {
     const item = { bank_name: "", location: ""};
-    this.setState({ activeItem: item, modal: !this.state.modal });
+    this.setState({ branchItem: item, modal: !this.state.modal });
   };
   editItem = item => {
-    this.setState({ branchItem: item, modal: !this.state.modal });
+    this.setState({ activeItem: item, modal: !this.state.modal });
   };
   render() {
     return (

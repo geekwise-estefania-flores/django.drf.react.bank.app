@@ -26,6 +26,7 @@ export default class CustomModal extends Component {
       value = e.target.value;
     }
     const branchItem = { ...this.state.branchItem, [name]: value };
+    console.log("branch: " + branchItem.address)
     this.setState({ branchItem });
   };
 
