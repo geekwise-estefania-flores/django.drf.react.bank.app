@@ -1,142 +1,33 @@
 import React, { Component } from "react";
-import Modal from "./components/Modal";
 import axios from "axios";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Branch from "./components/branch";
+import Header from "./components/layout/header";
+import Login from "./components/accounts/login";
+import Register from "./components/accounts/register";
+import PrivateRoute from "./components/common/PrivateRoute";
+import { Provider } from 'react-redux';
+import store from "./store";
+import { loadUser } from './actions/auth';
+
+
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      viewCompleted: false,
-      activeItem: {
-        name: "",
-        address: "",
-        // completed: false
-      },
-      todoList: []
-    };
-  }
   componentDidMount() {
-    this.refreshList();
-  }
-  refreshList = () => {
-    axios
-      .get("http://127.0.0.1:8000/api/branches/")
-      .then(res => this.setState({ todoList: res.data.results }))
-      .catch(err => console.log(err));
+    store.dispatch(loadUser());
   };
-  displayCompleted = status => {
-    if (status) {
-      return this.setState({ viewCompleted: true });
-    }
-    return this.setState({ viewCompleted: false });
-  };
-  renderTabList = () => {
-    return (
-      <div className="my-5 tab-list">
-        <span
-          onClick={() => this.displayCompleted(true)}
-          className={this.state.viewCompleted ? "active" : ""}
-        >
-          complete
-        </span>
-        <span
-          onClick={() => this.displayCompleted(false)}
-          className={this.state.viewCompleted ? "" : "active"}
-        >
-          Incomplete
-        </span>
-      </div>
-    );
-  };
-  renderItems = () => {
-    // const { viewCompleted } = this.state;
-    const newItems = this.state.todoList
-    console.log(newItems)
-    return newItems.map(item => (
-      <li
-        key={item.id}
-        className="list-group-item d-flex justify-content-between align-items-center"
-      >
-        <span
-          className={`todo-title mr-2 ${
-            this.state.viewCompleted ? "completed-todo" : ""
-          }`}
-          title={item.name}
-        >
-          {item.name}
-        </span>
-        <span>
-          <button
-            onClick={() => this.editItem(item)}
-            className="btn btn-secondary mr-2"
-          >
-            {" "}
-            Edit{" "}
-          </button>
-          <button
-            onClick={() => this.handleDelete(item)}
-            className="btn btn-danger"
-          >
-            Delete{" "}
-          </button>
-        </span>
-      </li>
-    ));
-  };
-  toggle = () => {
-    this.setState({ modal: !this.state.modal });
-  };
-  handleSubmit = item => {
-    this.toggle();
-    if (item.id) {
-      axios
-        .put(`http://127.0.0.1:8000/api/branches/${item.id}/`, item)
-        .then(res => this.refreshList());
-      return;
-    }
-    axios
-      .post("http://127.0.0.1:8000/api/branches/", item)
-      .then(res => this.refreshList());
-  };
-  handleDelete = item => {
-    axios
-      .delete(`http://127.0.0.1:8000/api/branches/${item.id}`)
-      .then(res => this.refreshList());
-  };
-  createItem = () => {
-    const item = { name: "", address: ""};
-    this.setState({ activeItem: item, modal: !this.state.modal });
-  };
-  editItem = item => {
-    this.setState({ activeItem: item, modal: !this.state.modal });
-  };
-  render() {
-    return (
-      <main className="content">
-        <h1 className="text-white text-uppercase text-center my-4">Todo app</h1>
-        <div className="row ">
-          <div className="col-md-6 col-sm-10 mx-auto p-0">
-            <div className="card p-3">
-              <div className="">
-                <button onClick={this.createItem} className="btn btn-primary">
-                  Add task
-                </button>
-              </div>
-              {this.renderTabList()}
-              <ul className="list-group list-group-flush">
-                {this.renderItems()}
-              </ul>
-            </div>
-          </div>
-        </div>
-        {this.state.modal ? (
-          <Modal
-            activeItem={this.state.activeItem}
-            toggle={this.toggle}
-            onSave={this.handleSubmit}
-          />
-        ) : null}
-      </main>
+  render(){
+    return(
+      <Provider store={store}>
+      <Router>
+        <Header/>
+        <Switch>
+        <PrivateRoute exact path="/" component={Branch}/>
+        <Route exact path="/login" component={Login}/>
+        <Route exact path="/register" component={Register}/>
+        </Switch>
+    </Router> 
+    </Provider>
     );
   }
 }

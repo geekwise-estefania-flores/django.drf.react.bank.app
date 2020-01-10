@@ -1,11 +1,29 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.contrib.auth import authenticate
+
+class PermissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Permission
+        fields = '__all__'
+
+
 # User Serializer
 class UserSerializer(serializers.ModelSerializer):
-    class Meta:
+    user_permissions = PermissionSerializer(many=True)
+
+    class Meta: 
         model = User
-        fields = ('id', 'username', 'email')
+        fields = '__all__'
+
+    def create(self, validated_data):
+        permissions_data = validated_data.pop('userpermissions')
+        user = User.objects.create(**validated_data)
+        for permission_data in permissions_data:
+            Permission.objects.create(user=user, **permission_data)
+        return user
+
+
 # Register Serializer
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,6 +37,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             validated_data['password']
         )
         return user
+        
 # Login Serializer
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
