@@ -10,11 +10,11 @@ class PermissionSerializer(serializers.ModelSerializer):
 
 # User Serializer
 class UserSerializer(serializers.ModelSerializer):
-    user_permissions = PermissionSerializer(many=True)
+    groups = PermissionSerializer(many=True)
 
     class Meta: 
         model = User
-        fields = '__all__'
+        fields = ('id', 'username', 'email', 'groups')
 
     def create(self, validated_data):
         permissions_data = validated_data.pop('userpermissions')

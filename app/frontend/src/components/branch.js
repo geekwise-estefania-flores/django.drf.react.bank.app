@@ -8,9 +8,8 @@ class Branch extends Component {
     this.state = {
       viewCompleted: false,
       activeItem: {
-        branch_name: '',
-        branch_location: '',
-        completed: false
+        name: '',
+        address: ''
       },
       bankApp: []
     };
@@ -20,7 +19,7 @@ class Branch extends Component {
   }
   refreshList = () => {
     axios
-      .get("http://127.0.0.1:8000/branch/")
+      .get("http://127.0.0.1:8000/branches/")
       .then(res => this.setState({ bankApp: res.data.results }))
       .catch(err => console.log(err));
   };
@@ -34,25 +33,25 @@ class Branch extends Component {
     return (
         <div className="my-5 tab-list">
         <span
-            onClick={() => this.displayCustomer(true)}
+            onClick={() => this.displayCompleted(true)}
             className={this.state.viewCompleted ? "active" : ""}
         >
             Branch
         </span>
         <span
-            onClick={() => this.displayCustomer(false)}
+            onClick={() => this.displayCompleted(false)}
             className={this.state.viewCompleted ? "" : "active" }
         >
             Customer
         </span>
         <span
-            onClick={() => this.displayCustomer(false)}
+            onClick={() => this.displayCompleted(false)}
             className={this.state.viewCompleted ? "" : "active"}
         >
             Products
         </span>
         <span
-            onClick={() => this.displayCustomer(false)}
+            onClick={() => this.displayCompleted(false)}
             className={this.state.viewCompleted ? "" : "active"} 
         >
             Account
@@ -76,9 +75,10 @@ class Branch extends Component {
           className={`todo-title mr-2 ${
             this.state.viewCompleted ? "completed-todo" : ""
           }`}
-          title={item.branch_name}
+          title={item.name} 
         >
-          {item.branch_name}
+          {item.name}
+          {/* {item.name} hello */}
         </span>
         <span>
           <button
@@ -105,21 +105,21 @@ class Branch extends Component {
     this.toggle();
     if (item.id) {
       axios
-        .put(`http://127.0.0.1:8000/branch/${item.id}/`, item)
+        .put(`http://127.0.0.1:8000/branches/${item.id}/`, item)
         .then(res => this.refreshList());
       return;
     }
     axios
-      .post("http://127.0.0.1:8000/branch/", item)
+      .post("http://127.0.0.1:8000/branches/", item)
       .then(res => this.refreshList());
   };
   handleDelete = item => {
     axios
-      .delete(`http://127.0.0.1:8000/branch/${item.id}`)
+      .delete(`http://127.0.0.1:8000/branches/${item.id}`)
       .then(res => this.refreshList());
   };
   createItem = () => {
-    const item = { branch_name: "", branch_location: "" };
+    const item = { name: "", address: "" };
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
   editItem = item => {
