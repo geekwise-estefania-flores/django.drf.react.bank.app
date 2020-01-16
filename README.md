@@ -2,8 +2,13 @@
 # Bank Project
 
 Bank project using Django and React deployed via Heroku<br>
-[Backend](https://django-drf-react-bank-project.herokuapp.com/)
-[Frontend](https://django-drf-react-proj-front.herokuapp.com/)
+- [Backend](https://django-drf-react-bank-project.herokuapp.com/)
+- [Frontend](https://django-drf-react-proj-front.herokuapp.com/)
+
+# sign-in information
+
+username: admin
+password: admin
 
 ## Built With
 
