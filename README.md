@@ -7,8 +7,8 @@ Bank project using Django and React deployed via Heroku<br>
 
 # sign-in information
 
-username: admin
-password: admin
+- username: admin
+- password: admin
 
 ## Built With
 
