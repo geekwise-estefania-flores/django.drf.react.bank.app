@@ -1,6 +1,23 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User, Permission
 from django.contrib.auth import authenticate
+from rest_framework.decorators import permission_classes, APIView
+from rest_framework.views import APIView
+from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
+
+
+# class ReadOnly(BasePermission):
+#     def has_permission(self, request, view):
+#         return request.method in SAFE_METHODS
+
+# class ExampleView(APIView):
+#     permission_classes = [IsAuthenticated]
+
+    # def get(self, request, format=None):
+    #     content = {
+    #         'status': 'request was permitted'
+    #     }
+    #     return Response(content)
 
 class PermissionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -47,3 +64,21 @@ class LoginSerializer(serializers.Serializer):
         if user and user.is_active:
             return user
         raise serializers.ValidationError("Incorrect Credentials")
+
+# Reset Serializer
+class PasswordSerializer (serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    def create(self, validated_data):
+        pass
+
+    def update(self, instance, validated_data):
+        pass
+
+    def validate(self, data):
+        """ check that username and new password are different """
+        if data["username"] == data["password"]:
+            raise serializers.ValidationError("Password should be different")
+        return data
+

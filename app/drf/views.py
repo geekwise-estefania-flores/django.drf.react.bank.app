@@ -3,12 +3,7 @@ from rest_framework import viewsets
 from drf.serializers import User_Serializer, Branch_Serializer, Account_Serializer, Customer_Serializer
 from drf.models import Account, Branch, Customer
 
-
-
 class user_viewset(viewsets.ModelViewSet):
-    """ note:
-    - api endpoint that allows `users` to be viewed and edited
-    """
     queryset = User.objects.all()
     serializer_class = User_Serializer
 

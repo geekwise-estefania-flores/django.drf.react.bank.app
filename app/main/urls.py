@@ -9,7 +9,7 @@ router.register(r'users', drf_views.user_viewset, 'users')
 router.register(r'accounts', drf_views.Account_Viewset, 'account')
 router.register(r'branches', drf_views.Branch_Viewset, 'branches')
 router.register(r'customers', drf_views.Customer_Viewset, 'customers')
-# router.register(r'todos', drf_views.TodoView, 'todo')
+
 
 
 urlpatterns = [

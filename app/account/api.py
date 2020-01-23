@@ -1,8 +1,10 @@
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from knox.models import AuthToken
-from .serializers import UserSerializer, RegisterSerializer, LoginSerializer, PermissionSerializer
+from .serializers import UserSerializer, RegisterSerializer, LoginSerializer, PermissionSerializer, PasswordSerializer
 from django.contrib.auth.models import User
+from rest_framework.views import APIView
+
 
 # Register API
 class RegisterAPI(generics.GenericAPIView):
@@ -65,3 +67,31 @@ class AllPermissionsAPI(generics.RetrieveAPIView):
         
         data = {p: p in user_permissions for p in all_permissions}
         return Response(data)
+
+class PasswordAPI(APIView):
+
+    def get_object(self, username):
+        user = generics.get_object_or_404(User, username=username)
+        return user
+
+    def put(self, request):
+        serializer = PasswordSerializer(data=request.data)
+        if serializer.is_valid():
+            username = serializer.data['username']
+            user = self.get_object(username)
+            new_password = serializer.data['password']
+            is_same_as_old = user.check_password(new_password)
+            if is_same_as_old:
+                """
+                old password and new passwords should not be the same
+                """
+                return Response({"password": ["It should be different from your last password."]},
+                                status=status.HTTP_400_BAD_REQUEST)
+            user.set_password(new_password)
+            user.save()
+            return Response({'success':True})
+
+            # res = {key: user.__dict__[key] for key in user.__dict__.keys() & {'username', 'email', 'date_joined'}} 
+
+            # return Response(res)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -2,34 +2,30 @@ import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { login } from "../../actions/auth";
-export class Login extends Component {
-  state = {
-        username: "",
-        password: ""
+// import { register } from "../../actions/auth";
+
+export class Reset extends Component {
+    state = {
+        username: "", 
+        email: "",
+        password: "",
     };
-  static propTypes = {
-        login: PropTypes.func.isRequired,
-        isAuthenticated: PropTypes.bool
-    };
-onSubmit = e => {
+
+    onSubmit = e => {
         e.preventDefault();
-        console.log(this.state.username, this.state.password);
-        this.props.login(this.state.username, this.state.password);
-        
-    };
+        console.log('submit')
+        this.props.resetPassword(this.state.username,this.state.password)
+
+        }
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value });
     }
     render() {
-        if(this.props.isAuthenticated){
-            return <Redirect to="/"/>
-        }
-        const { username, password } = this.state;
+        const { username, email, password } = this.state;
         return (
             <div className="col-md-6 m-auto">
               <div className="card card-body mt-5">
-                <h2 className="text-center">Login</h2>
+                <h2 className="text-center">Reset</h2>
                 <form onSubmit={this.onSubmit}>
                   <div className="form-group">
                     <label>Username</label>
@@ -39,6 +35,16 @@ onSubmit = e => {
                       name="username"
                       onChange={this.onChange}
                       value={username}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Email</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      name="email"
+                      onChange={this.onChange}
+                      value={email}
                     />
                   </div>
                   <div className="form-group">
@@ -52,10 +58,10 @@ onSubmit = e => {
                     />
                   </div>
                   <div className="form-group">
-                    <button type="submit" className="btn btn-primary">Login</button>
+                    <button type="submit" className="btn btn-primary">Reset</button>
                   </div>
                   <p>
-                    Don't have an account? <Link to="/register">Register</Link>
+                    Already have an account? <Link to="/login">Login</Link>
                   </p>
                 </form>
               </div>
@@ -64,6 +70,6 @@ onSubmit = e => {
     }
 }
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
+//   isAuthenticated: state.auth.isAuthenticated
 });
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { Reset })(Reset)
