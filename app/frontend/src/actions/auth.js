@@ -43,13 +43,13 @@ export const login = (username, password) => dispatch => {
                 payload: res.data
             })
         })
-        .catch(err => {
-            dispatch(returnErrors(err.response.data, err.response.status))
-            dispatch({
-                type: LOGIN_FAIL
-            })
-            alert(err.response.data.non_field_errors);
-        })
+        // .catch(err => {
+        //     dispatch(returnErrors(err.response.data, err.response.status))
+        //     dispatch({
+        //         type: LOGIN_FAIL
+        //     })
+        //     alert(err.response.data.non_field_errors);
+        // })
 
 }
 //REGISTER USER

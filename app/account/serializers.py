@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User, Permission
+from django.contrib.auth.models import User, Permission, Group
 from django.contrib.auth import authenticate
 from rest_framework.decorators import permission_classes, APIView
 from rest_framework.views import APIView
@@ -64,6 +64,12 @@ class LoginSerializer(serializers.Serializer):
         if user and user.is_active:
             return user
         raise serializers.ValidationError("Incorrect Credentials")
+
+#Groups Serializer
+class GroupSerializer(serializers.Serializer):
+    class Meta: 
+        model = Group
+        fields = '__all__'
 
 # Reset Serializer
 class PasswordSerializer (serializers.Serializer):

@@ -6,3 +6,5 @@
 /env
 /theia
 /vscode
+node_modules
+
