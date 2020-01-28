@@ -8,7 +8,9 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_FAIL,
-    REGISTER_SUCCESS
+    REGISTER_SUCCESS,
+    RESET_SUCCESS,
+    RESET_FAIL,
 }
 from './types';
 // Check token & load user
@@ -119,4 +121,31 @@ export const logout = () => (dispatch, getState) => {
       .catch(err => {
           dispatch(returnErrors(err.response.data, err.response.status));
       });
-};
+
+    //Reset Password
+      export const resetPassword = (username, password) =>  (dispatch, getState) => {
+        //Headers
+        const config = {
+            headers: {
+                'Content-type':'application/json'
+            }
+        }
+    
+        const body = JSON.stringify({ username, password});
+        axios
+            .put('http://127.0.0.1:8000/users/password', body, tokenConfig(getState))
+            .then(res => {
+                dispatch({
+                    type: RESET_SUCCESS,
+                    payload: res.data
+                });
+            })
+            .catch(err => {
+                // dispatch(returnErrors(err.response.data, err.response.status));
+                dispatch({
+                    type:RESET_FAIL
+                });
+                // alert(err.response.data.non_field_errors);
+            });
+        };
+    };

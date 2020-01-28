@@ -78,7 +78,6 @@ class Branch extends Component {
           title={item.name} 
         >
           {item.name}
-          {/* {item.name} hello */}
         </span>
         <span>
           <button

@@ -37,8 +37,14 @@ export class Header extends Component {
             Login
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/reset" className="nav-link">
+            Reset
+          </Link>
+        </li>
       </ul>
     );
+    
     return (
         <nav className="navbar navbar-expand-sm navbar-light bg-light">
         <div className="container">

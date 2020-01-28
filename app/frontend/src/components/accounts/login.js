@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/auth";
+
 export class Login extends Component {
   state = {
         username: "",
@@ -21,7 +22,7 @@ onSubmit = e => {
     }
     render() {
         if(this.props.isAuthenticated){
-            return <Redirect to="/"/>
+            return <Redirect to="/branch"/>
         }
         const { username, password } = this.state;
         return (
@@ -53,7 +54,7 @@ onSubmit = e => {
                     <button type="submit" className="btn btn-primary">Login</button>
                   </div>
                   <p>
-                    Don't have an account? <Link to="/register">Register</Link>
+                    Don't have an account? <Link to="/register">Register</Link> | <Link to="/reset">Reset Password</Link>
                   </p>
                 </form>
               </div>
